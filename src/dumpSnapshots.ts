@@ -1,12 +1,13 @@
 import fs from 'fs'
-import {bn1e10, bn64b} from './bn'
-import {createApi} from './createApi'
-import {writeJson} from './writeJson'
+import { bn1e10, bn64b } from './bn'
+import { createApi } from './createApi'
+import { date } from './date'
+import { writeJson } from './writeJson'
 
 export async function dumpSnapshots() {
   const step = 100
   const since = -1
-  const output = './result.json'
+  const output = `./data/daily-result-${date}.json`
   const endpoint = 'wss://khala.api.onfinality.io/public-ws'
 
   // Check file access
