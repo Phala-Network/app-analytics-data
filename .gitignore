@@ -35,5 +35,3 @@ temp
 *.log
 .rush
 .eslintcache
-
-data
