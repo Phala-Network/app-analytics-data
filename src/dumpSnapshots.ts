@@ -7,7 +7,7 @@ import { writeJson } from './writeJson'
 export async function dumpSnapshots() {
   const step = 100
   const since = -1
-  const output = `./data/daily-result-${date}.json`
+  const output = `./data/daily/daily-result-${date}.json`
   const endpoint = 'wss://khala.api.onfinality.io/public-ws'
 
   // Check file access
