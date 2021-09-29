@@ -11,17 +11,15 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
+      - name: Cache Primes
+        id: cache-primes
+        uses: actions/cache@v2
+        with:
+          path: data
+          key: primes
       - uses: actions/setup-node@v2
         with:
           node-version: '16'
       - run: yarn install
-      - name: Download a single artifact
-        uses: actions/download-artifact@v2
       - run: yarn start
       - run: yarn run chart-data
-      - name: Archive production artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: data-files
-          path: |
-            data
