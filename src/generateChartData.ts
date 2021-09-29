@@ -1,7 +1,7 @@
 import fs from 'fs'
 import { writeJson } from './writeJson'
 
-const result = fs.readdirSync('./data')
+const result = fs.readdirSync('./data/daily')
 
 console.log('result', result)
 
