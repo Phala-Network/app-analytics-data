@@ -85,7 +85,7 @@ export async function dumpSnapshots() {
     workers: frame.length,
     vCPU: miningIdles.reduce((sum, item) => sum + item.v, 0) / 150,
     reward: frame.reduce((sum, item) => sum + item.totalReward, 0),
-    date: new Date(),
+    date,
   }
 
   console.log('result', result)
