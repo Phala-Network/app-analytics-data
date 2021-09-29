@@ -12,9 +12,6 @@
     "type": "git",
     "url": "git+https://github.com/Phala-Network/app-analytics-data.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/Phala-Network/app-analytics-data/issues"
   },
