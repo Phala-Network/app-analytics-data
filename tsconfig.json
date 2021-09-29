@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "incremental": true,
+    "composite": true,
+    "lib": ["dom", "ES2018"],
+    "target": "ES2018",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "strict": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUncheckedIndexedAccess": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "isolatedModules": true,
+    "resolveJsonModule": true,
+    "stripInternal": true,
+    "esModuleInterop": true,
+    "preserveWatchOutput": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true
+  },
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
+  }
+}

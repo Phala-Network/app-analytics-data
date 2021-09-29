@@ -1,0 +1,31 @@
+{
+  "name": "app-analytics-data",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node ./src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Phala-Network/app-analytics-data.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Phala-Network/app-analytics-data/issues"
+  },
+  "homepage": "https://github.com/Phala-Network/app-analytics-data#readme",
+  "dependencies": {
+    "@phala/typedefs": "^0.2.28",
+    "@polkadot/api": "^6.1.1",
+    "@types/node": "^16.10.1",
+    "bn.js": "^5.2.0",
+    "dotenv": "^10.0.0",
+    "ts-node": "^10.2.1",
+    "tslib": "^2.3.1",
+    "typescript": "^4.4.3"
+  }
+}
