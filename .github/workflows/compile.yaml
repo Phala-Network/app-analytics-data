@@ -18,7 +18,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: data
-          key: data-files-cache-2
+          key: data-files-cache-3
       - uses: actions/setup-node@v2
         with:
           node-version: '16'

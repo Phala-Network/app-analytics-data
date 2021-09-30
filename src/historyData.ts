@@ -1,4 +1,4 @@
 import { dumpSnapshots } from './dumpSnapshots'
 
 // dailyData
-dumpSnapshots(1000, -20000)
+dumpSnapshots(1000, -100000)
