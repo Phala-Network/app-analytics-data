@@ -6,8 +6,8 @@
   "license": "MIT",
   "scripts": {
     "history-data": "ts-node ./src/historyData.ts",
-    "chart-data": "ts-node ./src/dailyData.ts",
-    "daily-data": "ts-node ./src/generateChartData.ts",
+    "daily-data": "ts-node ./src/dailyData.ts",
+    "chart-data": "ts-node ./src/generateChartData.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
