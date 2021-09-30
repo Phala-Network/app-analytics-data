@@ -18,12 +18,12 @@ jobs:
         uses: actions/cache@v2
         with:
           path: data
-          key: data-files-cache
+          key: data-files-cache-2
       - uses: actions/setup-node@v2
         with:
           node-version: '16'
       - run: yarn install
-      - run: yarn start
+      - run: yarn run daily-data
       - run: yarn run chart-data
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.2.2

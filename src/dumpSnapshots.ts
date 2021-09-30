@@ -1,19 +1,12 @@
+import { ApiPromise } from '@polkadot/api'
 import fs from 'fs'
 import { bn1e10, bn64b } from './bn'
 import { createApi } from './createApi'
-import { date } from './date'
+import { formatDate } from './date'
 import { writeJson } from './writeJson'
 
-export async function dumpSnapshots() {
-  const step = 100
-  const since = -1
-  const output = `./data/daily/daily-result-${date}.json`
-  const outputLatest = `./data/latest/daily.json`
+export async function dumpSnapshots(step = 1000, since = -1) {
   const endpoint = 'wss://khala.api.onfinality.io/public-ws'
-
-  // Check file access
-  fs.writeFileSync(output, '')
-  fs.writeFileSync(outputLatest, '')
 
   const api = await createApi(endpoint)
   const tip = await api.rpc.chain.getHeader()
@@ -39,41 +32,59 @@ export async function dumpSnapshots() {
       return map
     }, {})
 
+  const input = []
+
   // Dump miner status
-  const dataset = []
   for (let n = startNum; n <= tipNum; n += step) {
-    const percentage = (((n - startNum) / (tipNum - startNum)) * 100).toFixed(2)
-    console.log(`Dumping ${n} / ${tipNum} (${percentage}%)`)
-    const h = await api.rpc.chain.getBlockHash(n)
-    const entries = await api.query?.phalaMining?.miners?.entriesAt(h)
-
-    const frame = entries?.map(([key, v]) => {
-      // @ts-ignore
-      const m = v.unwrap()
-      const miner = key.args[0]?.toHuman()
-
-      return {
-        miner,
-        // @ts-ignore
-        worker: minerWorkerMap[miner] || '',
-        state: m.state.toString(),
-        v: m.v.div(bn64b).toNumber(),
-        pInit: m.benchmark.pInit.toNumber(),
-        pInstant: m.benchmark.pInstant.toNumber(),
-        updatedAt: m.benchmark.challengeTimeLast.toNumber(),
-        totalReward: m.stats.totalReward.div(bn1e10).toNumber() / 100,
-      }
-    })
-    dataset.push({
-      blocknum: n,
-      frame,
-    })
+    console.log('')
+    // const percentage = (((n - startNum) / (tipNum - startNum)) * 100).toFixed(2)
+    // console.log(`Dumping ${n} / ${tipNum} (${percentage}%)`)
+    input.push(n)
   }
 
-  console.log('dataset.length', dataset[0]?.frame?.length)
-  console.log('dataset[0].frame[0]', dataset[0]?.frame?.[0])
+  // await input
+  for (const n of input) {
+    await handleData(api, n, minerWorkerMap)
+  }
 
-  const frame = dataset[0]?.frame
+  api.disconnect()
+}
+
+async function handleData(api: ApiPromise, n: number, minerWorkerMap: {}) {
+  console.log('n', n)
+  const h = await api.rpc.chain.getBlockHash(n)
+  const momentPrev = await api.query.timestamp.now.at(h)
+
+  console.log('momentPrev', formatDate(momentPrev.toNumber()))
+
+  const date = formatDate(momentPrev.toNumber())
+
+  const output = `./data/daily/daily-result-${date}.json`
+  const outputLatest = `./data/latest/daily.json`
+
+  // Check file access
+  fs.writeFileSync(output, '')
+  fs.writeFileSync(outputLatest, '')
+
+  const entries = await api.query?.phalaMining?.miners?.entriesAt(h)
+
+  const frame = entries?.map(([key, v]) => {
+    // @ts-ignore
+    const m = v.unwrap()
+    const miner = key.args[0]?.toHuman()
+
+    return {
+      miner,
+      // @ts-ignore
+      worker: minerWorkerMap[miner] || '',
+      state: m.state.toString(),
+      v: m.v.div(bn64b).toNumber(),
+      pInit: m.benchmark.pInit.toNumber(),
+      pInstant: m.benchmark.pInstant.toNumber(),
+      updatedAt: m.benchmark.challengeTimeLast.toNumber(),
+      totalReward: m.stats.totalReward.div(bn1e10).toNumber() / 100,
+    }
+  })
 
   if (!frame) {
     console.error('frame is null')
@@ -85,7 +96,7 @@ export async function dumpSnapshots() {
   const result = {
     onlineWorkers: miningIdles.length,
     workers: frame.length,
-    vCPU: miningIdles.reduce((sum, item) => sum + item.v, 0) / 150,
+    vCPU: miningIdles.reduce((sum, item) => sum + item.pInstant, 0) / 150,
     reward: frame.reduce((sum, item) => sum + item.totalReward, 0),
     date,
   }
@@ -94,6 +105,4 @@ export async function dumpSnapshots() {
 
   writeJson(output, result)
   writeJson(outputLatest, result)
-
-  api.disconnect()
 }
