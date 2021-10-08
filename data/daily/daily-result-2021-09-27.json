@@ -1,7 +1,8 @@
 {
-  "onlineWorkers": 4207,
-  "workers": 8682,
-  "vCPU": 59775.74,
-  "reward": 415676.7300000011,
+  "block": 464472,
+  "onlineWorkers": 4105,
+  "workers": 8347,
+  "vCPU": 57864.38,
+  "reward": 395049.9100000005,
   "date": "2021-09-27"
 }
