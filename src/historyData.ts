@@ -1,4 +1,4 @@
 import { dumpSnapshots } from './dumpSnapshots'
 
-// dailyData
-dumpSnapshots(1000, -100000)
+// history data
+dumpSnapshots(2000, -100000)
