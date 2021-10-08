@@ -19,11 +19,9 @@ jobs:
       - run: yarn install
       - run: yarn run daily-data
       - run: yarn run chart-data
-      - uses: stefanzweifel/git-auto-commit-action@v2.3.0
+      - uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: auto update data
-          branch: ${{ github.head_ref }}
-          commit_options: '--no-verify --signoff'
+          commit_message: auto update daily data
           file_pattern: data/daily/*.json
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
