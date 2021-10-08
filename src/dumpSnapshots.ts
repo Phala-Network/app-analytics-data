@@ -59,10 +59,13 @@ async function handleData(api: ApiPromise, n: number, minerWorkerMap: {}) {
 
   const date = formatDate(momentPrev.toNumber())
 
+  const output2 = `./data/block/block-result-${n}.json`
   const output = `./data/daily/daily-result-${date}.json`
   const outputLatest = `./data/latest/daily.json`
 
   // Check file access
+  fs.rmdirSync(output2, { recursive: true })
+  fs.writeFileSync(output2, '')
   fs.writeFileSync(output, '')
   fs.writeFileSync(outputLatest, '')
 
@@ -104,6 +107,7 @@ async function handleData(api: ApiPromise, n: number, minerWorkerMap: {}) {
 
   console.log('result', result)
 
+  writeJson(output2, result)
   writeJson(output, result)
   writeJson(outputLatest, result)
 }
