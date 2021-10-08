@@ -17,14 +17,15 @@ jobs:
         with:
           node-version: '16'
       - run: yarn install
+      - run: yarn run history-data
       - run: yarn run daily-data
       - run: yarn run chart-data
-      - uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: auto update daily data
-          file_pattern: data/daily/*.json
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - uses: stefanzweifel/git-auto-commit-action@v4
+      #   with:
+      #     commit_message: auto update daily data
+      #     file_pattern: data/daily/*.json
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.2.2
         with:
