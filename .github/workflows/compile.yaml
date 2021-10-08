@@ -19,6 +19,7 @@ jobs:
           github_token: ${{secrets.GITHUB_TOKEN}}
           name: data-files
           path: data
+          workflow: compile.yml
       - uses: actions/setup-node@v2
         with:
           node-version: '16'
