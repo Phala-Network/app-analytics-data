@@ -8,6 +8,7 @@
     "history-data": "ts-node ./src/historyData.ts",
     "daily-data": "ts-node ./src/dailyData.ts",
     "chart-data": "ts-node ./src/generateChartData.ts",
+    "block-chart-data": "ts-node ./src/generateBlockChartData.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,10 +22,12 @@
   "dependencies": {
     "@phala/typedefs": "^0.2.28",
     "@polkadot/api": "^5.7.1",
+    "@types/fs-extra": "^9.0.13",
     "@types/luxon": "^2.0.4",
     "@types/node": "^16.10.1",
     "bn.js": "^5.2.0",
     "dotenv": "^10.0.0",
+    "fs-extra": "^10.0.0",
     "luxon": "^2.0.2",
     "ts-node": "^10.2.1",
     "tslib": "^2.3.1",

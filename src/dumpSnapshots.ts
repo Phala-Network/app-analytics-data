@@ -1,5 +1,6 @@
 import { ApiPromise } from '@polkadot/api'
 import fs from 'fs'
+import fsExtra from 'fs-extra'
 import { bn1e10, bn64b } from './bn'
 import { createApi } from './createApi'
 import { formatDate } from './date'
@@ -37,16 +38,17 @@ export async function dumpSnapshots(step = 1000, since = -1) {
   // Dump miner status
   for (let n = startNum; n <= tipNum; n += step) {
     console.log('')
-    // const percentage = (((n - startNum) / (tipNum - startNum)) * 100).toFixed(2)
-    // console.log(`Dumping ${n} / ${tipNum} (${percentage}%)`)
     input.push(n)
   }
+
+  fsExtra.emptyDirSync('./data/block')
 
   // await input
   for (const n of input) {
     console.time()
     await handleData(api, n, minerWorkerMap)
     console.timeEnd()
+    console.log('')
   }
 
   api.disconnect()

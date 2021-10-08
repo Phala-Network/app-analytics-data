@@ -20,6 +20,7 @@ jobs:
       - run: yarn run history-data
       - run: yarn run daily-data
       - run: yarn run chart-data
+      - run: yarn run block-chart-data
       # - uses: stefanzweifel/git-auto-commit-action@v4
       #   with:
       #     commit_message: auto update daily data
