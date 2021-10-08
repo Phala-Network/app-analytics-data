@@ -94,6 +94,7 @@ async function handleData(api: ApiPromise, n: number, minerWorkerMap: {}) {
   const miningIdles = frame.filter((item) => item.state === 'MiningIdle')
 
   const result = {
+    block: n,
     onlineWorkers: miningIdles.length,
     workers: frame.length,
     vCPU: miningIdles.reduce((sum, item) => sum + item.pInstant, 0) / 150,
