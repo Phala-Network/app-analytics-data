@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [master]
   schedule:
-    - cron: '*/10 * * * *'
+    - cron: '*/30 * * * *'
 
 jobs:
   publish:
@@ -23,7 +23,6 @@ jobs:
         with:
           node-version: '16'
       - run: yarn install
-      - run: yarn run history-data
       - run: yarn run daily-data
       - run: yarn run chart-data
       - name: Deploy to Netlify
