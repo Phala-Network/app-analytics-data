@@ -44,7 +44,9 @@ export async function dumpSnapshots(step = 1000, since = -1) {
 
   // await input
   for (const n of input) {
+    console.time()
     await handleData(api, n, minerWorkerMap)
+    console.timeEnd()
   }
 
   api.disconnect()
