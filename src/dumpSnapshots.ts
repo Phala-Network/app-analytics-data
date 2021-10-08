@@ -64,7 +64,6 @@ async function handleData(api: ApiPromise, n: number, minerWorkerMap: {}) {
   const outputLatest = `./data/latest/daily.json`
 
   // Check file access
-  fs.rmdirSync(output2, { recursive: true })
   fs.writeFileSync(output2, '')
   fs.writeFileSync(output, '')
   fs.writeFileSync(outputLatest, '')
