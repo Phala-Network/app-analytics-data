@@ -23,7 +23,6 @@ jobs:
         with:
           commit_message: auto update data
           branch: ${{ github.head_ref }}
-          commit_options: '-- --no-verify --signoff'
           file_pattern: data/daily/*.json
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
