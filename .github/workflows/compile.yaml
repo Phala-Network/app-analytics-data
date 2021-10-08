@@ -16,7 +16,6 @@ jobs:
       - name: Download artifact
         uses: dawidd6/action-download-artifact@v2
         with:
-          github_token: ${{secrets.GITHUB_TOKEN}}
           name: data-files
           path: data
           workflow: compile.yml
