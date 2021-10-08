@@ -18,7 +18,6 @@ jobs:
           node-version: '16'
       - run: yarn install
       - run: yarn run history-data
-      - run: yarn run daily-data
       - run: yarn run chart-data
       - run: yarn run block-chart-data
       - name: Deploy to Netlify
