@@ -15,12 +15,8 @@ result.map((file, index) => {
       reward: 0,
     })
   } else {
-    const lastData = require(`${dailyFilsPath}/${result[index - 1]}`)
-    const lastDataReward = lastData ? lastData.reward : data.reward
-
     chartData.push({
       ...data,
-      reward: data.reward - lastDataReward,
     })
   }
 })
