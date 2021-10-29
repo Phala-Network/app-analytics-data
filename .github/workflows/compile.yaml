@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [master]
   schedule:
-    - cron: '50 */6 * * *'
+    - cron: '50 */1 * * *'
 
 jobs:
   publish:
