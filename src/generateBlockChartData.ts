@@ -7,7 +7,7 @@ const chartData: {}[] = []
 const result = fs.readdirSync(dailyFilsPath)
 
 result.map((file, index) => {
-  const data = require(`${dailyFilsPath}/${file}`)
+  const data = require(`${dailyFilsPath}/${file}.json`)
 
   if (index === 0 || index === 1) {
   } else {
@@ -21,4 +21,4 @@ console.log('result', result)
 
 const fileName = 'blockChartData.json'
 
-writeJson(`./data/chart/${fileName}`, chartData)
+writeJson(`./data/chart/${fileName}.json`, chartData)
