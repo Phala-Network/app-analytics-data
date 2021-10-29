@@ -47,9 +47,13 @@ export async function dumpSnapshots() {
   let lastReward = 0
   // await input
   for (const n of input) {
-    console.time()
-    lastReward = (await handleData(api, n, minerWorkerMap, lastReward)) ?? 0
-    console.timeEnd()
+    try {
+      console.time()
+      lastReward = (await handleData(api, n, minerWorkerMap, lastReward)) ?? 0
+      console.timeEnd()
+    } catch (e) {
+      console.error(e)
+    }
     console.log('')
   }
 
