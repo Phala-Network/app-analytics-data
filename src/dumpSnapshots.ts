@@ -7,13 +7,15 @@ import { writeCSV } from './writeCSV'
 import { writeJson } from './writeJson'
 
 export async function dumpSnapshots() {
-  const endpoint = 'wss://khala.api.onfinality.io/public-ws'
+  // const endpoint = 'wss://khala-archive.phala.network/ws'
+  const endpoint = 'wss://khala-node-asia-1.phala.network/ws'
+  // const endpoint = 'wss://khala.api.onfinality.io/public-ws'
 
   const api = await createApi(endpoint)
   const tip = await api.rpc.chain.getHeader()
   const tipNum = tip.number.toNumber()
   // const startNum = 417793
-  const startNum = 612193
+  const startNum = 604993
 
   // Dump miner-to-worker map (instant snapshot)
   const minerBindings = await api?.query?.phalaMining?.minerBindings?.entries()
