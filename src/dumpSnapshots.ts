@@ -7,8 +7,8 @@ import { writeCSV } from './writeCSV'
 import { writeJson } from './writeJson'
 
 export async function dumpSnapshots() {
-  // const endpoint = 'wss://khala-archive.phala.network/ws'
-  const endpoint = 'wss://khala-node-asia-1.phala.network/ws'
+  const endpoint = 'wss://khala-archive.phala.network/ws'
+  // const endpoint = 'wss://khala-node-asia-1.phala.network/ws'
   // const endpoint = 'wss://khala.api.onfinality.io/public-ws'
 
   const api = await createApi(endpoint)
