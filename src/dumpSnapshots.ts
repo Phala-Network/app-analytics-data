@@ -7,7 +7,7 @@ import { formatDate } from './date'
 import { writeJson } from './writeJson'
 
 export async function dumpSnapshots(step = 1000, since = -1) {
-  const endpoint = 'wss://khala-archive.phala.network/ws'
+  const endpoint = 'wss://khala-node-asia-1.phala.network/ws'
 
   const api = await createApi(endpoint)
   const tip = await api.rpc.chain.getHeader()
