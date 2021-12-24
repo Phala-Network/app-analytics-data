@@ -15,7 +15,7 @@ export async function dumpSnapshots() {
   const tip = await api.rpc.chain.getHeader()
   const tipNum = tip.number.toNumber()
   // const startNum = 417793
-  const startNum = 878593
+  const startNum = 921793
   // const startNum = 604993
 
   // Dump miner-to-worker map (instant snapshot)
