@@ -11,15 +11,20 @@ export async function dumpSnapshots() {
   const endpoint = 'wss://khala-node-asia-1.phala.network/ws'
   // const endpoint = 'wss://khala.api.onfinality.io/public-ws'
 
+  console.time('init')
   const api = await createApi(endpoint)
   const tip = await api.rpc.chain.getHeader()
+  console.timeEnd('init')
+
   const tipNum = tip.number.toNumber()
-  // const startNum = 417793
-  const startNum = 921793
-  // const startNum = 604993
+  const startNum = 950593
+  // const startNum = 921793
+  // const startNum = 604993 - 7200 * 26
 
   // Dump miner-to-worker map (instant snapshot)
+  console.time('minerBindings')
   const minerBindings = await api?.query?.phalaMining?.minerBindings?.entries()
+  console.timeEnd('minerBindings')
 
   if (!minerBindings) {
     console.error('minerBindings is null')
@@ -41,7 +46,6 @@ export async function dumpSnapshots() {
 
   // Dump miner status
   for (let n = startNum; n <= tipNum; n += 7200) {
-    console.log('')
     input.push(n)
   }
 
@@ -53,7 +57,6 @@ export async function dumpSnapshots() {
     console.time()
     lastReward = (await handleData(api, n, minerWorkerMap, lastReward)) ?? 0
     console.timeEnd()
-    console.log('')
   }
 
   api.disconnect()
