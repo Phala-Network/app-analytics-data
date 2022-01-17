@@ -17,7 +17,7 @@ export async function dumpSnapshots() {
   console.timeEnd('init')
 
   const tipNum = tip.number.toNumber()
-  const startNum = 1022593
+  const startNum = 1058593
   // const startNum = 921793
   // const startNum = 604993 - 7200 * 26
 
